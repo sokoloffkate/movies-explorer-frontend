@@ -1,0 +1,22 @@
+.moviesCardList {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    padding: 0 70px;
+    background-color: #202020;
+}
+
+
+@media screen and (max-width: 768px) {
+    .moviesCardList  {
+      padding: 0 30px;
+   }  
+} 
+
+@media screen and (max-width: 320px) {
+    .moviesCardList  {
+      display: flex;  
+      flex-direction: column;
+      row-gap: 34px;
+      padding: 40px 10px 0;
+   }  
+} 

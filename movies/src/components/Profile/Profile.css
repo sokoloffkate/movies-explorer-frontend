@@ -1,0 +1,117 @@
+.profile {
+  background-color: #202020;
+  min-height: 100vh;
+}
+
+.profile__content {
+  max-width: 410px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 74px auto 70px;
+  row-gap: 106px;
+}
+
+.profile__form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.profile__title {
+  color: #FFF;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 29px;
+  margin: 0;
+}
+
+.profile__form-inputs {
+   display: flex;
+   justify-content: space-between;
+   border-bottom: 1px solid #424242;
+   padding-bottom: 16px;
+   padding-top: 17px;
+}
+
+.profile__form .profile__form-inputs:nth-child(2) {
+    border-bottom: none;
+}  
+
+.profile__form-input-label {
+    color: #FFF;
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 13px;
+  }
+
+.profile__form-input {
+    border: none;
+    background-color: #202020;
+    color: #FFF;
+    text-align: right;
+    font-size: 11px;
+    line-height: 13px;
+}  
+
+.profile__form-input:focus {
+    outline: 0;
+} 
+
+.profile__form-buttons {
+    display: flex;
+    flex-direction: column;
+    row-gap: 16px;
+    margin-top: 204px;
+}
+
+.profile__form-button {
+   background-color: #202020;
+   border: none;
+   color: #FFF;
+   text-align: center;
+   font-size: 13px;
+   line-height: 16px;
+   padding: 0;
+}
+
+.profile__form-button:hover {
+  opacity: .8;
+  cursor: pointer;
+}
+
+.profile__form-buttons .profile__form-button:last-child {
+   color: #EE3465;
+}
+
+@media screen and (max-width: 768px) {
+  .profile__content {
+    margin: 236px auto 269px;
+    row-gap: 79px;
+  }  
+  .profile__form-buttons {
+    row-gap: 16px;
+    margin-top: 194px;
+  }
+} 
+
+@media screen and (max-width: 430px) {
+  .profile__content {
+    max-width: calc(100% - 60px);
+  }
+}
+
+@media screen and (max-width: 320px) {
+   .profile__content {
+    max-width: 260px;
+    margin: 70px 30px 40px;
+    row-gap: 63px;
+  }  
+  .profile__form-buttons {
+    margin-top: 363px;
+  }
+  .profile__form-button {
+    font-size: 12px;
+    line-height: 15px;
+   }
+} 

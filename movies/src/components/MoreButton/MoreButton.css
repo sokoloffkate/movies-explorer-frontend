@@ -1,0 +1,43 @@
+.moreButton {
+    max-width: 320px;
+    margin: 0 auto;
+    background-color: #202020;   
+    display: grid; 
+}
+
+.moreButton__btn {
+    color: #FFF;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 15px;
+    padding: 0;
+    margin: 50px auto 80px;
+    width: 100%;
+    height: 36px;
+    border-radius: 6px;
+    background-color: #2F2F2F;
+    border: none;
+ }
+
+ .moreButton__btn:hover {
+    opacity: .8;
+    cursor: pointer;
+ }
+
+   
+@media screen and (max-width: 768px) {
+    .moreButton {
+      padding: 0 30px;
+   }  
+}
+
+   
+@media screen and (max-width: 320px) {
+    .moreButton {
+      padding: 0 40px;
+   } 
+   .moreButton__btn {
+      max-width: 240px;
+ } 
+}

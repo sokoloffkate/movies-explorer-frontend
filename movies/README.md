@@ -1,0 +1,1 @@
+Макет - https://disk.yandex.ru/d/uYBNAONuqEvW6Q
