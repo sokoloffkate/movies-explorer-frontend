@@ -1,7 +1,7 @@
 .moviesCard {
     display: flex;
     flex-direction: column;
-    row-gap: 14px;
+    row-gap: 10px;
     max-width: 270px;
 } 
 
@@ -18,7 +18,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 11px;
+    margin-bottom: 15px;
 }
 
 .moviesCard__description-title {
@@ -33,6 +33,7 @@
     color: #8b8b8b;
     font-size: 11px;
     line-height: 13px;
+    font-weight: 400;
     border-top: 1px solid #424242;
     max-width: 270px;
     padding-top: 6px;

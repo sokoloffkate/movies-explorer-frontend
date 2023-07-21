@@ -13,6 +13,8 @@
 @import url(../src/components/Footer/Footer.css);
 @import url(../src/components/SearchForm/SearchForm.css);
 @import url(../src/components/Navigation/Navigation.css);
+@import url(../src/components/FormInputs/FormInputs.css);
+@import url(../src/components/ImputField/ImputField.css);
 @import url(../src/components/Register/Register.css);
 @import url(../src/components/Login/Login.css);
 @import url(../src/components/Profile/Profile.css);
@@ -24,3 +26,9 @@
 @import url(../src/components/MoreButton/MoreButton.css);
 @import url(../src/components/Error404/Error404.css);
 @import url(../src/components/Hamburger/Hamburger.css);
+
+
+.page {
+    background-color: #020202;
+    min-height: 100vh;
+  }

@@ -6,14 +6,14 @@ function SearchForm () {
       <>
         <section className="search">
         <form className="search__form" >
-          <fieldset className="search__form-fielset">
+          <div className="search__form-fielset">
             <input
               type="text"
               className="search__form-input"
               placeholder="Фильм"
             />
            <button className="search__form-button"> Поиск </button>
-         </fieldset> 
+         </div> 
          <FilterCheckbox />
        </form>
           

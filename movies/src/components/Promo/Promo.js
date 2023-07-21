@@ -7,7 +7,7 @@ function Promo () {
       <>
         <section className="promo">
            <img src={promoLogo} className="promo__logo" alt="pic"></img>
-           <h1 className="promo__title">Учебный проект студента факультета Веб-разработки</h1>
+           <h1 className="promo__title">Учебный проект студента факультета Веб-разработки.</h1>
         </section>
         <NavTab />
       </> 

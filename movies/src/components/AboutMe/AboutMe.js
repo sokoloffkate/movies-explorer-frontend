@@ -1,6 +1,5 @@
 import React from "react";
-import photo from "../../images/photo.svg"
-import Portfolio from "../Portfolio/Portfolio";
+import photo from "../../images/photo.jpg"
 
 
 function AboutMe () {
@@ -17,7 +16,7 @@ function AboutMe () {
                 <img src={photo} className="aboutMe__photo" alt="Фото студента"></img>
                 </div>
         </section>
-        <Portfolio />
+       
       </>
     )
 }

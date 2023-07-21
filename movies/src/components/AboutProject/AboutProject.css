@@ -43,13 +43,13 @@
 .about-project__info-item-description {
     font-size: 14px;
     line-height: 20px; 
-    font-weight: 500;
+    font-weight: 400;
     margin: 0;
 } 
 
 .about-project__time {
     display: grid;
-    grid-template-columns: 1fr 4fr;
+    grid-template-columns: 228px auto;
     list-style: none;
     margin: 0;
     padding: 0;
@@ -107,6 +107,10 @@
     font-size: 12px;
     line-height: 18px; 
 }
+.about-project__time {
+   grid-template-columns: 140px auto;
+  
+}
 }
 
 @media screen and (max-width: 320px) {
@@ -136,6 +140,10 @@
 .about-project__info-item-description {
     font-size: 11px;
     line-height: 16px; 
+  }
+
+  .about-project__time {
+    grid-template-columns: 100px auto;
   }
   .about-project__time-item {
     gap: 10px;

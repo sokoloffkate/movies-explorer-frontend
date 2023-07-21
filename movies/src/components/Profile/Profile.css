@@ -1,6 +1,6 @@
 .profile {
   background-color: #202020;
-  min-height: 100vh;
+  height: 100vh;
 }
 
 .profile__content {
@@ -10,6 +10,7 @@
   align-items: center;
   margin: 74px auto 70px;
   row-gap: 106px;
+  height: 100vh;
 }
 
 .profile__form {

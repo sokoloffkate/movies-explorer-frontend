@@ -12,7 +12,7 @@ import Error from '../Error404/Error404';
 function App() {
   
  return (
-    <div className="page">
+    <div className="app">
       
         <Switch>
 

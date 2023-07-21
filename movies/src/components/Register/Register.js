@@ -1,58 +1,34 @@
 import React from "react";
-import Logo from "../Logo/Logo";
-import { Link } from 'react-router-dom';
+import FormInputs from "../FormInputs/FormInputs";
+import InputField from "../ImputField/ImputField";
 
 function Register () {
     return (
-        <section className="register">
-            <div className="register__content">
-              <div className="register__header">
-                <Logo />
-                <h1 className="register__title">Добро пожаловать!</h1>
-             </div>  
-            <form className="register__form">
 
-               <fieldset className="register__form-fieldset">
-                  <label className="register__form-label">
-                     Имя
-                    <input
-                    type="text"
-                    className="register__form-input"
-                  />
-                 </label>
+      <FormInputs
+        title="Добро пожаловать!"
+        btnName="Зарегистрироваться"
+        text="Уже зарегистрированы?"
+        link="/signin"
+        linkTitle="Войти"
+        label="Имя"
+      >
+       <InputField 
+         label="Имя"
+       />
 
-                 <label className="register__form-label">
-                     E-mail
-                    <input
-                    type="text"
-                    className="register__form-input"
-                  />
-                 </label>
+       <InputField 
+         label="E-mail"
+       />
 
-                 <label className="register__form-label">
-                    Пароль
-                    <input
-                    type="text"
-                    className="register__form-input"
-                  />
-                 </label>
+        <InputField 
+         label="Пароль"
+       />
 
-                 <button
-                   type="submit"
-                   className="register__form-button"
-                 >
-                  Зарегистрироваться
-                 </button>
-               </fieldset>
-               <div className="register__form-go-to-signin">
-                 <p className="register__form-text">Уже зарегистрированы?</p>
-                  <Link to='/signin' className="register__form-link">Войти</Link>
-               </div>
-              
-              </form> 
-           </div>        
-        </section>
-       
+
+     </FormInputs>
+      
     )
 }
 export default Register;
+

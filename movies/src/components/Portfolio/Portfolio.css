@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     background-color: #202020;
-    padding: 0 70px 125px;
+    padding: 0 70px 115px;
     gap: 50px;
 }
 
@@ -39,6 +39,7 @@
     line-height: 50px;
     letter-spacing: -1.2px;
     color: #FFF;
+    font-weight: 400;
     padding: 0 0 19px 0;
     margin: 0;     
 }
