@@ -1,4 +1,4 @@
-.formInputs__form-label {
+.inputField {
     display: flex;
     flex-direction: column;
     row-gap: 10px;
@@ -8,7 +8,7 @@
     line-height: 12px;  
   }
  
-  .formInputs__form-input {
+  .inputField__input {
      height: 46px;
      border-radius: 8px;
      background: #2F2F2F;
@@ -21,13 +21,12 @@
      box-sizing: border-box; 
   }
  
-  .formInputs__form-input:focus {
+  .inputField__input:focus {
      outline: 0;
   }
 
   @media screen and (max-width: 320px) {
-    
-    .formInputs__form-input {
+    .inputField__input {
        width: 260px;
     }
  }

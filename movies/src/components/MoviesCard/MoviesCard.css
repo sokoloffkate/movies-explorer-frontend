@@ -6,7 +6,7 @@
 } 
 
 .moviesCard__poster {
-  max-height: 151px;
+  min-height: 151px;
 }
 
 .moviesCard__poster-img {
@@ -18,7 +18,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 15px;
+    margin-bottom: 12px;
 }
 
 .moviesCard__description-title {
@@ -68,7 +68,7 @@
     max-width: 339px;
  }  
  .moviesCard__poster {
-    max-height: 190px;
+    min-height: 190px;
 }
  .moviesCard__description-duration {
     max-width: 339px;
@@ -81,7 +81,7 @@
     row-gap: 15px;
  }  
  .moviesCard__poster {
-    max-height: 168px;
+    min-height: 168px;
 }
 .moviesCard__description-title {
     font-size: 12px;

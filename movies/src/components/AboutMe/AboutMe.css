@@ -70,7 +70,7 @@
 .aboutMe__photo {
     grid-area: photo;
     max-width: 270px;
-    max-height: 327px;
+    min-height: 327px;
     border-radius: 10px;
     flex-shrink: 0;
 }

@@ -14,10 +14,12 @@ function Login () {
       >
         <InputField 
           label="E-mail"
+          placeholder="Введите ваш e-mail"
        />
 
         <InputField 
           label="Пароль"
+          placeholder="Введите ваш пароль"
        />
       </FormInputs>
     )

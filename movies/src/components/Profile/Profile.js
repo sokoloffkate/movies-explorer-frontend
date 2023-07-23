@@ -14,12 +14,12 @@ function Profile () {
               
               <div className="profile__form-inputs">
                 <label className="profile__form-input-label">Имя</label>
-                <input type="text" className="profile__form-input"/>
+                <input type="text" className="profile__form-input" value="Виталий" disabled/>
               </div>
 
               <div className="profile__form-inputs">
                 <label className="profile__form-input-label">E-mail</label>
-                <input type="text" className="profile__form-input"/>
+                <input type="text" className="profile__form-input" value="pochta@yandex.ru" disabled/>
               </div>    
 
               <div className="profile__form-buttons">

@@ -9,6 +9,10 @@
 }
 
 .promo__logo {
+    background-image: url(../../images/promoLogo.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
     width: 320px;
     height: 320px;
     opacity: .2;
@@ -51,7 +55,7 @@
       letter-spacing: -1.24px;
    }  
     .promo__logo {
-       width: 248px;
-       height: 248px;
+      width: 248px;
+      height: 248px;
  } 
   } 

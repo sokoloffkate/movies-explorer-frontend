@@ -6,7 +6,7 @@ function AboutMe () {
 
     return (
       <>
-        <section className="aboutMe" id="aboutMe">
+        <main className="aboutMe" id="aboutMe">
            <h2 className="aboutMe__title">Студент</h2>
             <div className="aboutMe__info">
                 <h3 className="aboutMe__info-name">Виталий</h3>
@@ -15,7 +15,7 @@ function AboutMe () {
                 <a className="aboutMe__info-link" href="https://github.com/sokoloffkate">Github</a>
                 <img src={photo} className="aboutMe__photo" alt="Фото студента"></img>
                 </div>
-        </section>
+        </main>
        
       </>
     )

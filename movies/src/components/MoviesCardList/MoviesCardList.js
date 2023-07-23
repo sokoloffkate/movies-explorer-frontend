@@ -7,6 +7,11 @@ function MoviesCardList () {
       <>
         <section className="moviesCardList">
             <MoviesCard />
+            <MoviesCard />
+            <MoviesCard />
+            <MoviesCard />
+            <MoviesCard />
+            <MoviesCard />
          </section>
        </> 
       )

@@ -4,17 +4,20 @@
 }
 
 .search__form {
+    display: flex;
+    flex-direction: column;
+    row-gap: 26px;
     border-bottom: 1px solid rgba(170, 170, 170, .2);
 }
 
 .search__form-fielset {
-    width:100%;
-    margin: 0 0 26px 0;
+    width: 100%;
+    margin: 0;
     display: flex;
     justify-content: space-between;
     border-radius: 8px;
     border: 1.5px solid rgba(170, 170, 170, .2);
-    padding: 10px 10px 10px 25px;
+    padding: 8.5px 10px 8.5px 25px;
     box-sizing: border-box;
 }
 

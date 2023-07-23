@@ -3,6 +3,9 @@
     grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
     padding: 70px 70px 10px;
     background-color: #202020;
+    justify-items: center;
+    column-gap: 20px;
+    row-gap: 38px;
 }
 
 

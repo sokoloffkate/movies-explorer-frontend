@@ -8,7 +8,7 @@ import MoreButton from "../MoreButton/MoreButton";
 function Movies () {
 
     return (
-        <section className="movies">
+        <main className="movies">
             
             <Header />
             <SearchForm />
@@ -16,7 +16,7 @@ function Movies () {
             <MoreButton />
             <Footer />
 
-        </section>   
+        </main>   
 
   )  
 }

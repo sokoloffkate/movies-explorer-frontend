@@ -7,8 +7,8 @@ function Footer() {
            <div className="footer__info">
             <p className="footer__info-text">© 2020</p>
             <div className="footer__info-links">
-            <a className="footer__info-link" href="/" target="_blanc">Яндекс.Практикум</a>
-            <a className="footer__info-link" href="https://github.com/sokoloffkate" target="_blanc">Github</a>
+            <a className="footer__info-link" href="https://practicum.yandex.ru/" target="_blank" rel="noreferrer">Яндекс.Практикум</a>
+            <a className="footer__info-link" href="https://github.com/sokoloffkate" target="_blank" rel="noreferrer">Github</a>
            </div>
            </div>
         </footer>

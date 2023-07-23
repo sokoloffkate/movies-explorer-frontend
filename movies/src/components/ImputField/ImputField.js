@@ -1,13 +1,15 @@
 import React from "react";
 
-function InputField ({ label }) {
+function InputField ({ label, placeholder }) {
     
     return (
-        <label className="formInputs__form-label">
+        <label className="inputField">
           {`${label}`}
            <input
            type="text"
-           className="formInputs__form-input"
+           className="inputField__input"
+           required
+           placeholder= {`${placeholder}`}
            />
         </label>      
                

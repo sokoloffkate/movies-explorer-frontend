@@ -15,14 +15,17 @@ function Register () {
       >
        <InputField 
          label="Имя"
+         placeholder="Введите ваше имя"
        />
 
        <InputField 
          label="E-mail"
+         placeholder="Введите ваш e-mail"
        />
 
         <InputField 
          label="Пароль"
+         placeholder="Введите ваш пароль"
        />
 
 
