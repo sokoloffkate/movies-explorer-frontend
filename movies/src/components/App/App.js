@@ -8,10 +8,11 @@ import Profile from '../Profile/Profile';
 import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies';
 import Error from '../Error404/Error404';
+import { useState } from 'react';
 
 function App() {
   
- return (
+   return (
     <div className="app">
       
         <Switch>
@@ -28,7 +29,7 @@ function App() {
 
          <Route exact path = '/profile' component={Profile} />
 
-         <Route exact path = '/movies' component={Movies} />
+         <Route exact path = '/movies' component={Movies}   />
 
          <Route exact path = '/saved-movies' component={SavedMovies} />
 

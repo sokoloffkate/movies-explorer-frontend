@@ -22,7 +22,7 @@
   }
  
   .inputField__input:focus {
-     outline: 0;
+     outline: 1px solid gray;
   }
 
   @media screen and (max-width: 320px) {

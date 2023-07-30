@@ -54,21 +54,21 @@
 
 .navigation__nomain-movie {
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 400;
     line-height: 18px;
     color: #FFF;
     text-decoration: none;
  }  
 
+ .navigation__nomain-movie_weight {
+    font-weight: 500;
+ }
+
  .navigation__nomain-movie:hover {
     opacity: .7;
  }
 
- .navigation__nomain-movie:active {
-   font-weight: 400;
- }
-
-.navigation__nomain-profile {
+ .navigation__nomain-profile {
     display: flex;
     column-gap: 17px;
     align-items: center;
@@ -99,6 +99,10 @@
     border: none;
 }
 
+.navigation__nomain-profile-icon:hover {
+    opacity: .7;
+}
+
 .navigation__hamburger {
     display: none;
 }
@@ -122,7 +126,6 @@
         width: 44px;
         height: 44px
     }
-  
    }
 
 @media screen and (max-width: 320px) {
@@ -138,5 +141,6 @@
         width: 54px;
         height: 26px;
   }
+
 }
 

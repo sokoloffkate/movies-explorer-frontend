@@ -11,6 +11,8 @@ function Navigation () {
     setHamburgerOpen(!hamburgerOpen)
   };
 
+  console.log(hamburgerOpen);
+
       return (
         <nav className="navigation">
            
@@ -29,18 +31,18 @@ function Navigation () {
 
            <div className='navigation__nomain'>
                <div className="navigation__nomain-movies"> 
-                 <Link to="/movies" className="navigation__nomain-movie" target="_blank">Фильмы</Link>
+                 <Link to="/movies" className="navigation__nomain-movie navigation__nomain-movie_weight" target="_blank">Фильмы</Link>
                  <Link to="/saved-movies" className="navigation__nomain-movie" target="_blank">Сохранённые фильмы</Link>
               </div>  
              <div className="navigation__nomain-profile"> 
                  <Link to="/profile" className="navigation__nomain-profile-link" target="_blank">Аккаунт</Link>
-                 <button type="button" className="navigation__nomain-profile-icon" alt="аватар" />
+                 <Link to="/profile" className="navigation__nomain-profile-icon" target="_blank" alt="аватар" />
               </div>
                
             </div>
             <div className="navigation__hamburger">
                 <img src={hamburger} className="navigation__hamburger-icon" onClick={toggleHamburger} alt="меню ссылок"></img>
-                {hamburgerOpen ? <Hamburger /> : ''}
+                {hamburgerOpen ? <Hamburger  hamburgerOpen={hamburgerOpen} setHamburgerOpen={setHamburgerOpen} /> : ''}
               </div> 
 
            </Route>
