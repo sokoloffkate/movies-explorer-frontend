@@ -8,7 +8,6 @@ import Profile from '../Profile/Profile';
 import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies';
 import Error from '../Error404/Error404';
-import { useState } from 'react';
 
 function App() {
   
