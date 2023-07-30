@@ -1,0 +1,146 @@
+.navigation {
+   width:100%;
+}
+
+.navigation__main {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    column-gap: 30px;
+    margin-top: 3px;
+}
+
+.navigation__main-link {
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 16px;
+    color: #FFF;
+    text-decoration: none;
+    text-align: center;
+}
+
+.navigation__main-link:hover {
+    opacity: .7;
+}
+
+.navigation__main-button {
+    border-radius: 3px;
+    background-color: #3DDC84;
+    width: 76px;
+    height: 32px;
+    border: none;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 16px;
+}
+
+.navigation__main-button:hover {
+    opacity: .8;
+    cursor: pointer;
+}
+
+.navigation__nomain {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navigation__nomain-movies {
+    display: flex;
+    column-gap: 16px;
+    margin: 0 auto;
+    padding-left: 60px;
+}
+
+.navigation__nomain-movie {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 18px;
+    color: #FFF;
+    text-decoration: none;
+ }  
+
+ .navigation__nomain-movie_weight {
+    font-weight: 500;
+ }
+
+ .navigation__nomain-movie:hover {
+    opacity: .7;
+ }
+
+ .navigation__nomain-profile {
+    display: flex;
+    column-gap: 17px;
+    align-items: center;
+}  
+
+.navigation__nomain-profile-link {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 16px;
+    color: #FFF;
+    text-decoration: none; 
+}
+
+.navigation__nomain-profile-link:hover {
+    opacity: .7;
+}
+
+.navigation__nomain-profile-icon {
+    background-image: url(../../images/icon.svg);
+    background-repeat: no-repeat;
+    background-color: #313131;
+    background-position: center;
+    width: 26px;
+    height: 30px;
+    border-radius: 4px;
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+.navigation__nomain-profile-icon:hover {
+    opacity: .7;
+}
+
+.navigation__hamburger {
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+ 
+    .navigation__nomain {
+        display: none;
+    }
+
+     .navigation__hamburger {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: end;
+        margin-top: -3px;
+        margin-bottom: -3px;
+     }
+
+    .navigation__hamburger-icon{
+        width: 44px;
+        height: 44px
+    }
+   }
+
+@media screen and (max-width: 320px) {
+    .navigation__main {
+      column-gap: 14px;
+      margin-top: 6px;
+    }
+    .navigation__main-link {
+       font-size: 10px;
+    }
+    .navigation__main-button {
+        font-size: 10px;
+        width: 54px;
+        height: 26px;
+  }
+
+}
+

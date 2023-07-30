@@ -1,0 +1,140 @@
+.formInputs {
+    display: flex;
+    flex-direction: column;
+    background-color: #202020;
+    min-height: 100vh;
+}
+
+.formInputs__content {
+    min-width: 396px;
+    display: flex;
+    flex-direction: column;
+    margin: 70px auto;
+    row-gap: 40px;
+    align-items: flex-start;
+  }
+ 
+  .formInputs__content-header {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 40px;
+  }
+
+  .formInputs__content-title {
+   color: #FFF;
+   font-size: 24px;
+   font-weight: 500;
+   line-height: 29px;
+   margin: 0
+  }
+
+  .formInputs__content-form {
+    width: 100%;
+  }
+ 
+  .formInputs__content-form-fieldset{
+    display: flex;
+    flex-direction: column;
+    border: none;
+    margin: 0;
+    padding: 0;
+  }
+
+ .formInputs__content-form-fieldset-button {
+     height: 45px;
+     border-radius: 3px;
+     background-color: #4285F4;
+     margin: 159px 0 0;
+     padding: 0;
+     border: none;
+     color: #FFF;
+     text-align: center;
+     font-size: 14px;
+     font-weight: 500;
+     line-height: 17px; 
+  }
+
+  .formInputs__content-form-fieldset-button_margin-register {
+    margin: 71px 0 0;
+  }
+ 
+  .formInputs__content-form-fieldset-button:hover {
+     opacity: .8;
+     cursor: pointer;
+  }
+
+  .formInputs__content-form-go-to-sign {
+    display: flex;
+    column-gap: 6px;
+    align-items: center;
+    justify-content: center; 
+    padding-top: 16px;
+  }
+
+  .formInputs__content-form-text {
+    color: #8B8B8B;
+    text-align: center;
+    font-size: 14px;
+    line-height: 17px; 
+    font-weight: 400;
+    margin: 0;
+  }
+
+  .formInputs__content-form-link {
+    color: #4285F4;
+    text-align: center;
+    font-size: 14px;
+    line-height: 17px;
+    font-weight: 400;
+    text-decoration: none;
+   }
+  
+   .formInputs__content-form-link:hover {
+      opacity: .7;
+   }
+  
+
+   @media screen and (max-width: 768px) {
+    .formInputs__content {
+      margin: 232px auto;
+    }
+  }
+
+  
+ @media screen and (max-width: 430px) {
+    .formInputs__content {
+      min-width: calc(100% - 60px);
+    }
+  }
+
+  @media screen and (max-width: 320px) {
+    .formInputs__content {
+      max-width: 260px;
+      margin: 56px auto 30px;
+      row-gap: 80px
+    }
+    .formInputs__content-header {
+      align-items: center;
+      row-gap: 50px;
+    }
+    .formInputs__content-form-fieldset-button {
+       max-width: 260px;
+       margin: 157px 0 0;
+       font-size: 12px;
+       line-height: 15px;
+    }
+    .formInputs__content-form-go-to-sign {
+       column-gap: 7px;
+       padding-top: 14px;
+  }
+    .formInputs__content-form-text  {
+       font-size: 12px;
+       line-height: 15px; 
+  }
+  
+  .formInputs__content-form-link {
+    font-size: 12px;
+    line-height: 15px;
+   }
+ }

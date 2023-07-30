@@ -1,0 +1,32 @@
+.inputField {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    margin-bottom: 20px;
+    color: #8B8B8B;
+    font-size: 10px;
+    line-height: 12px;  
+  }
+ 
+  .inputField__input {
+     height: 46px;
+     border-radius: 8px;
+     background: #2F2F2F;
+     border: none;
+     padding: 15px;
+     margin: 0;
+     color: #FFF;
+     font-size: 13px;
+     line-height: 16px;
+     box-sizing: border-box; 
+  }
+ 
+  .inputField__input:focus {
+     outline: 1px solid gray;
+  }
+
+  @media screen and (max-width: 320px) {
+    .inputField__input {
+       width: 260px;
+    }
+ }
