@@ -6,7 +6,6 @@ function InputField ({ label, placeholder }) {
         <label className="inputField">
           {`${label}`}
            <input
-           type="text"
            className="inputField__input"
            required
            placeholder= {`${placeholder}`}

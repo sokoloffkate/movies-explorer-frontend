@@ -17,7 +17,7 @@ function FormInputs ({ title, children, btnName, text, link, linkTitle }) {
                 <Logo />
                 <h1 className="formInputs__content-title">{`${title}`}</h1>
              </div>  
-            <form className="formInputs__content-form">
+            <form action="submit" className="formInputs__content-form">
               <fieldset className="formInputs__content-form-fieldset">
                 {children}
                 <button
