@@ -17,7 +17,7 @@ function FormInputs ({ title, children, btnName, text, link, linkTitle }) {
                 <Logo />
                 <h1 className="formInputs__content-title">{`${title}`}</h1>
              </div>  
-            <form action="submit" className="formInputs__content-form">
+           <div action="submit" className="formInputs__content-form">
               <fieldset className="formInputs__content-form-fieldset">
                 {children}
                 <button
@@ -33,7 +33,7 @@ function FormInputs ({ title, children, btnName, text, link, linkTitle }) {
                  <Link to={`${link}`} className="formInputs__content-form-link">{`${linkTitle}`}</Link>
                </div>
               
-              </form> 
+          </div> 
            </div>        
         </section>
        

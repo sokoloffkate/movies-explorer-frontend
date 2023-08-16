@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useState } from "react";
 import FormInputs from "../FormInputs/FormInputs";
 import InputField from "../ImputField/ImputField";
 import { Redirect } from "react-router-dom";
@@ -6,30 +6,32 @@ import { Redirect } from "react-router-dom";
 function Register ({ isLoggedIn, onRegister }) {
 
   const [data, setData] = useState({
+    name: "",
     email: "",
     password: "",
   });
 
- const handleChangeData = useCallback(
+ const handleChangeData = (
     (e) => {
       const { name, value } = e.target;
       setData({
-        ...data,
+     
         [name]: value,
       });
-    },
-    [data]
-  );
-
+    });
+      
   const handleSubmit = (e) => {
       e.preventDefault();
       onRegister(data.name, data.email, data.password);
     };
 
+    
   if(isLoggedIn) {
     return <Redirect to="/"/>
   }
     return (
+
+    <form action="submit" onSubmit={handleSubmit}>
 
       <FormInputs
         title="Добро пожаловать!"
@@ -38,8 +40,10 @@ function Register ({ isLoggedIn, onRegister }) {
         link="/signin"
         linkTitle="Войти"
         label="Имя"
-        onSubmit={handleSubmit}
       >
+
+     <div onChange={handleChangeData}>
+
        <InputField 
          type="text"
          name="name"
@@ -48,6 +52,10 @@ function Register ({ isLoggedIn, onRegister }) {
          label="Имя"
          placeholder="Введите ваше имя"
        />
+
+     </div>
+
+     <div onChange={handleChangeData}>
 
        <InputField 
          type="email"
@@ -58,6 +66,10 @@ function Register ({ isLoggedIn, onRegister }) {
          placeholder="Введите ваш e-mail"
        />
 
+      </div>
+
+      <div onChange={handleChangeData}>
+
         <InputField 
          type="password"
          name="password"
@@ -67,9 +79,10 @@ function Register ({ isLoggedIn, onRegister }) {
          placeholder="Введите ваш пароль"
        />
 
+     </div>
 
      </FormInputs>
-      
+  </form>
     )
 }
 export default Register;
