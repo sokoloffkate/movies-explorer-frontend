@@ -11,9 +11,7 @@ function Navigation () {
     setHamburgerOpen(!hamburgerOpen)
   };
 
-  console.log(hamburgerOpen);
-
-      return (
+     return (
         <nav className="navigation">
            
            <Route exact path="/">

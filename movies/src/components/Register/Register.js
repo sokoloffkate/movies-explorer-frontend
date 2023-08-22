@@ -1,37 +1,23 @@
-import React, { useState } from "react";
+import { useForm } from 'react-hook-form';
 import FormInputs from "../FormInputs/FormInputs";
-import InputField from "../ImputField/ImputField";
-import { Redirect } from "react-router-dom";
 
-function Register ({ isLoggedIn, onRegister }) {
+function Register ({ onRegister }) {
 
-  const [data, setData] = useState({
-    name: "",
-    email: "",
-    password: "",
-  });
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isValid },
+  } = useForm(
+    {mode: 'onChange'}
+  );
 
- const handleChangeData = (
-    (e) => {
-      const { name, value } = e.target;
-      setData({
-     
-        [name]: value,
-      });
-    });
-      
-  const handleSubmit = (e) => {
-      e.preventDefault();
-      onRegister(data.name, data.email, data.password);
-    };
+  const onSubmit = (data) => {
+   onRegister(data.name, data.email, data.password);
+  };
 
-    
-  if(isLoggedIn) {
-    return <Redirect to="/"/>
-  }
-    return (
+  return (
 
-    <form action="submit" onSubmit={handleSubmit}>
+    <form action="submit" onSubmit={handleSubmit(onSubmit)}>
 
       <FormInputs
         title="Добро пожаловать!"
@@ -40,48 +26,73 @@ function Register ({ isLoggedIn, onRegister }) {
         link="/signin"
         linkTitle="Войти"
         label="Имя"
-      >
+        isValid={isValid}
+       >
 
-     <div onChange={handleChangeData}>
+      <label className="inputField" >
+         Имя
+         <input className="inputField__input" 
+         type="text" 
+         placeholder="Введите ваше имя" 
+         name="name" 
+         {...register("name", {
+          required: "Поле Имя обязательно к заполнению",
+          pattern: {
+            value: /^[A-Za-zА-Яа-я ]+$/,
+            message: "Поле Имя может содержить только латиницу, кириллицу, пробел или дефис"
+          },
+          minLength: {
+            value: 2,
+            message: "Имя должно содержать не менее 2 знаков"},
+          maxLength: {
+            value: 30,
+            message: "Имя должно содержать не более 30 знаков"
+          }
+        })}/>
 
-       <InputField 
-         type="text"
-         name="name"
-         value={data.name}
-         onChange={handleChangeData}
-         label="Имя"
-         placeholder="Введите ваше имя"
-       />
+        {errors.name && <p className="inputField__error">{errors.name.message}</p>}
+      </label>
+      
+      <label className="inputField" > 
+         E-mail
+        <input 
+        className="inputField__input" 
+        placeholder="Введите ваш e-mail" 
+        type="text" 
+        name="email" 
+        {...register("email", {
+          required: "Поле E-mail обязательно к заполнению",
+          pattern: {
+            value: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/, 
+            message: "Поле email заполнено некорректно"
+        }
+        })} />
 
-     </div>
+       {errors.email && <p className="inputField__error">{errors.email.message}</p>}
+     </label>
 
-     <div onChange={handleChangeData}>
+     <label className="inputField" > 
+         Пароль
+        <input 
+        className="inputField__input" 
+        placeholder="Введите ваш пароль" 
+        type="password" 
+        name="password" 
+        {...register("password", {
+          required: "Поле пароль обязательно к заполнению",
+          minLength: {
+            value: 2,
+            message: "Пароль должен содержать не менее 2 знаков"},
+          maxLength: {
+            value: 30,
+            message: "Пароль должен содержать не более 30 знаков"
+          }
+      })} />
 
-       <InputField 
-         type="email"
-         name="email"
-         value={data.email}
-         onChange={handleChangeData}
-         label="E-mail"
-         placeholder="Введите ваш e-mail"
-       />
+      {errors.password && <p className="inputField__error">{errors.password.message}</p>}
+    </label>
 
-      </div>
-
-      <div onChange={handleChangeData}>
-
-        <InputField 
-         type="password"
-         name="password"
-         value={data.password}
-         onChange={handleChangeData}
-         label="Пароль"
-         placeholder="Введите ваш пароль"
-       />
-
-     </div>
-
-     </FormInputs>
+    </FormInputs>
   </form>
     )
 }

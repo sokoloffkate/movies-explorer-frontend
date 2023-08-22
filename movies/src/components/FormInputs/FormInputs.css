@@ -64,6 +64,15 @@
      cursor: pointer;
   }
 
+  [aria-disabled="true"] {
+    background: #2F2F2F;
+    color: #8B8B8B;
+  }
+
+  [aria-disabled="true"]:hover {
+    cursor: default;
+  }
+
   .formInputs__content-form-go-to-sign {
     display: flex;
     column-gap: 6px;

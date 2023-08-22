@@ -1,63 +1,73 @@
-import React, { useCallback, useState } from "react";
 import FormInputs from "../FormInputs/FormInputs";
-import InputField from "../ImputField/ImputField";
-import { Redirect } from "react-router-dom";
+import { useForm } from "react-hook-form";
 
-function Login ({ isLoggedIn, onLogin }) {
+function Login({ onLogin }) {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isValid },
+  } = useForm({ mode: "onChange" });
 
-  const [data, setData] = useState({
-    email: "",
-    password: "",
-  });
+  const onSubmit = (data) => {
+    onLogin(data.email, data.password);
+    console.log(data);
+  };
 
-  const handleChangeData = useCallback(
-    (e) => {
-      const { name, value } = e.target;
-      setData({
-        ...data,
-        [name]: value,
-      });
-    },
-    [data]
-  );
-
-  const handleSubmit = useCallback(
-    (e) => {
-      e.preventDefault();
-      onLogin(data.email, data.password);
-    },
-    [onLogin, data]
-  );
-
-  if (isLoggedIn) {
-    return <Redirect to="/" />;
-  }
-    return (
-
+  return (
+    <form action="submit" onSubmit={handleSubmit(onSubmit)}>
       <FormInputs
         title="Рады видеть!"
         btnName="Войти"
         text="Ещё не зарегистрированы?"
         link="/signup"
         linkTitle="Регистрация"
-        onSubmit={handleSubmit}
+        isValid={isValid}
       >
-        <InputField 
-          type="email"
-          value={data.email}
-          onChange={handleChangeData}
-          label="E-mail"
-          placeholder="Введите ваш e-mail"
-       />
+        <label className="inputField">
+          E-mail
+          <input
+            className="inputField__input"
+            placeholder="Введите ваш e-mail"
+            type="text"
+            name="email"
+            {...register("email", {
+              required: "Поле E-mail обязательно к заполнению",
+              pattern: {
+                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                message: "Поле email заполнено некорректно",
+              },
+            })}
+          />
+          {errors.email && (
+            <p className="inputField__error">{errors.email.message}</p>
+          )}
+        </label>
 
-        <InputField 
-          type="password"
-          value={data.password}
-          onChange={handleChangeData}
-          label="Пароль"
-          placeholder="Введите ваш пароль"
-       />
+        <label className="inputField">
+          Пароль
+          <input
+            className="inputField__input"
+            placeholder="Введите ваш пароль"
+            type="password"
+            name="password"
+            {...register("password", {
+              required: "Поле пароль обязательно к заполнению",
+              minLength: {
+                value: 2,
+                message: "Пароль должен содержать не менее 2 знаков",
+              },
+              maxLength: {
+                value: 30,
+                message: "Пароль должен содержать не более 30 знаков",
+              },
+            })}
+          />
+          {errors.password && (
+            <p className="inputField__error">{errors.password.message}</p>
+          )}
+        </label>
       </FormInputs>
-    )
+    </form>
+  );
 }
 export default Login;

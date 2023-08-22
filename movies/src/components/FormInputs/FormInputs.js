@@ -3,7 +3,7 @@ import Logo from "../Logo/Logo";
 import { Link, useLocation } from 'react-router-dom';
 
 
-function FormInputs ({ title, children, btnName, text, link, linkTitle }) {
+function FormInputs ({ title, children, isValid, btnName, text, link, linkTitle }) {
 
     const location = useLocation();
     const btnClass = location.pathname === '/signup' ? 
@@ -22,8 +22,9 @@ function FormInputs ({ title, children, btnName, text, link, linkTitle }) {
                 {children}
                 <button
                   type="submit"
-                  className={btnClass}
-                 >
+                  className={btnClass} 
+                  aria-disabled={!isValid}
+                >
                 {`${btnName}`}
                  </button>
              </fieldset>
