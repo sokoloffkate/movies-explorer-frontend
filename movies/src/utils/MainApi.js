@@ -6,6 +6,7 @@ export const login = (email, password) => {
     credentials: "include",
     headers: {
       "Content-Type": "application/json",
+      "Accept": "application/json",
     },
     body: JSON.stringify({ email, password }),
   }).then(checkResponse);
@@ -27,6 +28,7 @@ export const getUser = () => {
     credentials: "include",
     headers: {
       "Content-Type": "application/json",
+      "Accept": "application/json",
     },
   }).then(checkResponse);
 };

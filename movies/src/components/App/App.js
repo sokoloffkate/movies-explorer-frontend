@@ -14,19 +14,17 @@ import { useState, useEffect } from "react";
 import { InfoPopUp } from "../InfoPopUp/InfoPopUp";
 import Success from "../../images/Success.svg";
 import Failure from "../../images/Failure.svg";
-//import { TOKEN_KEY } from "../../utils/constants";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [isPopUpOpen, setPopUpOpen] = useState(false);
   const [userRegister, setUserRegister] = useState(false);
- 
+
   const [currentUser, setCurrentUser] = useState({});
-  
 
   const history = useHistory();
 
-  const isLogin = JSON.parse(localStorage.getItem('isUserLogin'));
+  //const isLogin = JSON.parse(localStorage.getItem('isUserLogin'));
 
   const handlePopUpClick = () => {
     setPopUpOpen(!isPopUpOpen);
@@ -35,22 +33,6 @@ function App() {
   const closeAllPopups = () => {
     setPopUpOpen(false);
   };
-
-  const handleAuth = (email, password) => {
-    api
-      .login(email, password)
-      .then((data) => {
-        localStorage.setItem('isUserLogin', true)
-        setLoggedIn(true);
-        history.push("/movies");
-      })
-      .catch((err) => {
-        handlePopUpClick();
-        console.log(`Ошибка - ${err}`);
-      });
-  };
-
-  console.log(isLogin)
 
   const handleRegister = (name, email, password) => {
     api
@@ -67,29 +49,28 @@ function App() {
       });
   };
 
+  const handleAuth = (email, password) => {
+    api
+      .login(email, password)
+      .then((data) => {
+        setLoggedIn(true);
+        history.push("/movies");
+      })
+      .catch((err) => {
+        handlePopUpClick();
+        console.log(`Ошибка - ${err}`);
+      });
+  };
+
   useEffect(() => {
-    if (isLogin) {
-      console.log('All is worked');
-      api.getUser()
+    if (loggedIn) {
+      api.getUser().then((data) => {
+        setCurrentUser(data);
+      });
     }
-  }, [isLogin])
+  }, [loggedIn]);
 
-  /*useEffect(() => {
-    if (isLogin) {
-      console.log(isLogin);
-      api
-        .getUser()
-        .then((userData) => {
-          console.log(userData);
-          setCurrentUser(userData.data);
-        })
-        .catch((err) => {
-          console.log(`Ошибка - ${err}`);
-        });
-    }
-  }, [isLogin]);*/
-
-  console.log(currentUser)
+  console.log(currentUser);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
