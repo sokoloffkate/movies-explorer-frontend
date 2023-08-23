@@ -33,8 +33,8 @@ function Navigation () {
                  <Link to="/saved-movies" className="navigation__nomain-movie" target="_blank">Сохранённые фильмы</Link>
               </div>  
              <div className="navigation__nomain-profile"> 
-                 <Link to="/profile" className="navigation__nomain-profile-link" target="_blank">Аккаунт</Link>
-                 <Link to="/profile" className="navigation__nomain-profile-icon" target="_blank" alt="аватар" />
+                 <Link to="/profile" className="navigation__nomain-profile-link">Аккаунт</Link>
+                 <Link to="/profile" className="navigation__nomain-profile-icon" alt="аватар" />
               </div>
                
             </div>

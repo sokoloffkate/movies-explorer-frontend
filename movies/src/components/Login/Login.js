@@ -8,9 +8,9 @@ function Login({ onLogin }) {
     formState: { errors, isValid },
   } = useForm({ mode: "onChange" });
 
-  const onSubmit = (data) => {
+  const onSubmit = (data, e) => {
+    e.preventDefault();
     onLogin(data.email, data.password);
-    console.log(data);
   };
 
   return (

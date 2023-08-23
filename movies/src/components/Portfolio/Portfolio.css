@@ -70,6 +70,11 @@ ul li:last-of-type span {
     opacity: .8;
 }
 
+[aria-disabled="true"] {
+    background: #2F2F2F;
+    color: #8B8B8B;
+}
+
 @media screen and (max-width: 768px) {
     .portfolio {
      padding: 0 50px 90px;

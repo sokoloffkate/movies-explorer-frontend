@@ -19,12 +19,13 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [isPopUpOpen, setPopUpOpen] = useState(false);
   const [userRegister, setUserRegister] = useState(false);
+  const [isEditProfile, setEditProfile] = useState(false);
 
   const [currentUser, setCurrentUser] = useState({});
 
   const history = useHistory();
 
-  //const isLogin = JSON.parse(localStorage.getItem('isUserLogin'));
+  const isLogin = JSON.parse(localStorage.getItem("isUserLogin"));
 
   const handlePopUpClick = () => {
     setPopUpOpen(!isPopUpOpen);
@@ -53,7 +54,7 @@ function App() {
     api
       .login(email, password)
       .then((data) => {
-        setLoggedIn(true);
+        localStorage.setItem("isUserLogin", true);
         history.push("/movies");
       })
       .catch((err) => {
@@ -63,14 +64,30 @@ function App() {
   };
 
   useEffect(() => {
-    if (loggedIn) {
+    if (isLogin) {
       api.getUser().then((data) => {
         setCurrentUser(data);
       });
     }
-  }, [loggedIn]);
+  }, [isLogin]);
 
-  console.log(currentUser);
+  const handleUpdateUserProfile = (name, email) => {
+    api.updateUserProfile(name, email).then((newDataUser) => {
+      setCurrentUser({
+        ...newDataUser,
+        name: newDataUser.name,
+        email: newDataUser.email,
+      });
+    });
+  };
+
+  const handleLogOut = () => {
+    api.logOut().then(() => {
+      //localStorage.setItem("isUserLogin");
+      console.log("You are logout successfully");
+      history.push("/");
+    });
+  };
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -90,7 +107,12 @@ function App() {
             <Login onLogin={handleAuth} />
           </Route>
 
-          <Route exact path="/profile" component={Profile} />
+          <Route exact path="/profile">
+            <Profile
+              onUpdateUser={handleUpdateUserProfile}
+              onLogOut={handleLogOut}
+            />
+          </Route>
 
           <Route exact path="/movies" component={Movies} />
 
@@ -99,7 +121,7 @@ function App() {
           <Route path="*" component={Error} />
         </Switch>
 
-        <InfoPopUp
+        {/* <InfoPopUp
           name={"popup_info"}
           isOpen={isPopUpOpen}
           onClose={closeAllPopups}
@@ -109,7 +131,7 @@ function App() {
               ? "Вы успешно зарегистрировались"
               : "Что-то пошло не так! Попробуйте ещё раз."
           }
-        ></InfoPopUp>
+        ></InfoPopUp>*/}
       </div>
     </CurrentUserContext.Provider>
   );

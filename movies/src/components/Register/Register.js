@@ -11,7 +11,8 @@ function Register ({ onRegister }) {
     {mode: 'onChange'}
   );
 
-  const onSubmit = (data) => {
+  const onSubmit = (data, e) => {
+   e.preventDefault();
    onRegister(data.name, data.email, data.password);
   };
 

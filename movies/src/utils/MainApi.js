@@ -6,7 +6,7 @@ export const login = (email, password) => {
     credentials: "include",
     headers: {
       "Content-Type": "application/json",
-      "Accept": "application/json",
+      Accept: "application/json",
     },
     body: JSON.stringify({ email, password }),
   }).then(checkResponse);
@@ -28,7 +28,31 @@ export const getUser = () => {
     credentials: "include",
     headers: {
       "Content-Type": "application/json",
-      "Accept": "application/json",
+      Accept: "application/json",
+    },
+  }).then(checkResponse);
+};
+
+export const updateUserProfile = ({ name, email }) => {
+  return fetch(`${base_url}/users/me`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    body: JSON.stringify({
+      name: name,
+      email: email,
+    }),
+  }).then(checkResponse);
+};
+
+export const logOut = () => {
+  return fetch(`${base_url}/signout`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
     },
   }).then(checkResponse);
 };
