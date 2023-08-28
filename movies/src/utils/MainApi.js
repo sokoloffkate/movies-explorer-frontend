@@ -36,6 +36,7 @@ export const getUser = () => {
 export const updateUserProfile = ({ name, email }) => {
   return fetch(`${base_url}/users/me`, {
     method: "PATCH",
+    credentials: "include",
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",
@@ -50,6 +51,30 @@ export const updateUserProfile = ({ name, email }) => {
 export const logOut = () => {
   return fetch(`${base_url}/signout`, {
     method: "POST",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+  }).then(checkResponse);
+};
+
+export const addNewMovie = (newData) => {
+  return fetch(`${base_url}/movies`, {
+    method: "POST",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    body: JSON.stringify(newData),
+  }).then(checkResponse);
+};
+
+export const deleteMovie = (movieId) => {
+  return fetch(`${base_url}/movies/${movieId}`, {
+    method: "DELETE",
+    credentials: "include",
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",
@@ -58,4 +83,4 @@ export const logOut = () => {
 };
 
 const checkResponse = (res) =>
-  res.ok ? res.json() : Promise.reject(`Error: ${res.statusText}`);
+  res.ok ? res.json() : Promise.reject(`Error ${res.statusText}`);

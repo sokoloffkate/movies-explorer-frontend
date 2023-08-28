@@ -1,43 +1,70 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useContext } from "react";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
-import { useForm } from 'react-hook-form';
+import { useForm } from "react-hook-form";
 import Header from "../Header/Header";
 
-function Profile({ onUpdateUser, onLogOut }) {
-  const user = useContext(CurrentUserContext);
+function Profile({ onUpdateUser, onLogOut, loggedIn }) {
+  const currentUser = useContext(CurrentUserContext);
+  const [disabled, setDisabled] = useState(true);
+  const [btnHide, setBtnHide] = useState(true);
+  const [btnDisabled, setBtnDisabled] = useState(true);
+  // const [typeBtn, setTypeBtn] = useState("button")
 
   const {
     register,
+    watch,
     handleSubmit,
+    reset,
     formState: { errors, isValid },
-  } = useForm(
-    {mode: 'onChange', defaultValues: { name: "hhh", email: "jjj"}}
-  );
+  } = useForm({ mode: "onChange", defaultValues: { name: "", email: "" } });
 
-  const onSubmit = (e, data) => {
+  const userName = watch("name");
+  const userEmail = watch("email");
+
+  const handleEditBtn = (e) => {
     e.preventDefault();
-    onUpdateUser(data.name, data.email);
-   };
+    setBtnHide(false);
+    setDisabled(false);
+  };
 
-   const onSignOut = (e) => {
+  useEffect(() => {
+    if (
+      (currentUser.name !== userName || currentUser.email !== userEmail) &&
+      isValid
+    ) {
+      setBtnDisabled(false);
+    }
+  }, [userName, userEmail, isValid]);
+
+  const onSubmit = (data, e) => {
+    e.preventDefault();
+    setDisabled(true);
+    setBtnHide(true);
+    onUpdateUser({ name: data.name, email: data.email });
+  };
+
+  useEffect(() => {
+    reset(currentUser);
+  }, [currentUser]);
+
+  const onSignOut = (e) => {
     e.preventDefault();
     onLogOut();
-   }
-
+  };
 
   return (
     <section className="profile">
       <Header />
 
       <div className="profile__content">
-        <h1 className="profile__title">{`${user.data.name}`}</h1>
+        <h1 className="profile__title">Привет, {`${currentUser.name}`}!</h1>
 
         <form className="profile__form" onSubmit={handleSubmit(onSubmit)}>
           <div className="profile__form-inputs">
             <label className="profile__form-input-label">Имя</label>
             <input
-              disabled
+              disabled={disabled}
               type="text"
               className="profile__form-input"
               name="name"
@@ -45,48 +72,70 @@ function Profile({ onUpdateUser, onLogOut }) {
                 required: "Поле Имя обязательно к заполнению",
                 pattern: {
                   value: /^[A-Za-zА-Яа-я ]+$/,
-                  message: "Поле Имя может содержить только латиницу, кириллицу, пробел или дефис"
+                  message:
+                    "Поле Имя может содержить только латиницу, кириллицу, пробел или дефис",
                 },
                 minLength: {
                   value: 2,
-                  message: "Имя должно содержать не менее 2 знаков"},
+                  message: "Имя должно содержать не менее 2 знаков",
+                },
                 maxLength: {
                   value: 30,
-                  message: "Имя должно содержать не более 30 знаков"
-                }
+                  message: "Имя должно содержать не более 30 знаков",
+                },
               })}
-              {...errors.name && <p className="inputField__error">{errors.name.message}</p>}
-
-                          />
+            />
           </div>
+          {errors.name && (
+            <span className="profile__form-input-error">
+              {errors.name.message}
+            </span>
+          )}
 
           <div className="profile__form-inputs">
             <label className="profile__form-input-label">E-mail</label>
             <input
-              disabled
+              disabled={disabled}
               type="text"
               className="profile__form-input"
               name="email"
               {...register("email", {
                 required: "Поле E-mail обязательно к заполнению",
                 pattern: {
-                  value: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/, 
-                  message: "Поле email заполнено некорректно"
-              }
-              })} 
-      
-             {...errors.email && <p className="inputField__error">{errors.email.message}</p>}
-              
+                  value: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
+                  message: "Поле email заполнено некорректно",
+                },
+              })}
             />
           </div>
+          {errors.email && (
+            <span className="profile__form-input-error">
+              {errors.email.message}
+            </span>
+          )}
 
           <div className="profile__form-buttons">
-            <button type="submit" 
-            className="profile__form-button"
-            aria-disabled={!isValid}>
-              Редактировать
-            </button>
-            <button type="button" className="profile__form-button" onClick={onSignOut}>
+            {btnHide ? (
+              <button
+                type="button"
+                className="profile__form-button"
+                onClick={handleEditBtn}
+              >
+                Редактировать
+              </button>) : (
+              <button
+                type="submit"
+                className="profile__form-button"
+                disabled={btnDisabled}
+              >
+                Cохранить
+              </button>)
+              }
+            <button
+              type="submit"
+              className="profile__form-button"
+              onClick={onSignOut}
+            >
               Выйти из аккаунта
             </button>
           </div>

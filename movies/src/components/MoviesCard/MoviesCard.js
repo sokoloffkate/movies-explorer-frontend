@@ -1,30 +1,67 @@
 import React from "react";
-import picMovie1 from '../../images/picMovie1.jpg'
 import { useLocation } from "react-router-dom";
+import { movies_url } from "../../utils/constants";
 
-function MoviesCard () {
-  
-    const location = useLocation();
-    const icon = location.pathname === '/movies' ? 
-    ' moviesCard__description-button moviesCard__description-button_active' 
-    : 'moviesCard__description-button moviesCard__description-button_close'; 
+function MoviesCard({ item, onLike, savedMovies, movieIsLiked, onDelete }) {
+  const { nameRU, duration } = item;
 
-    return (
+  const convertMinsToHours = (min) => {
+    let hours = Math.floor(min / 60);
+    let minutes = min % 60;
+    minutes = minutes < 10 ? "0" + minutes : minutes;
+    return `${hours}ч:${minutes}мин`;
+  };
 
-        <article className="moviesCard">
+  function handleLikeClick() {
+    onLike({
+      country: item.country,
+      director: item.director,
+      duration: item.duration,
+      year: item.year,
+      description: item.description,
+      image: `${movies_url}${item.image.url}`,
+      trailerLink: item.trailerLink,
+      nameRU: item.nameRU,
+      nameEN: item.nameEN,
+      thumbnail: `${movies_url}${item.image.previewUrl}`,
+      movieId: item.id,
+    });
+  }
 
-            {/* <div className="moviesCard__poster">*/}
-                <img className="moviesCard__poster" src={picMovie1} alt="Постер"></img>
-           {/* </div>*/}
-             <div className="moviesCard__description">
-               <h2 className="moviesCard__description-title">33 слова о дизайggggggggggнеиииииииииииииииииииииииииииииьььььььььььььььььььььььььььььььььььььььььььььььььььььььььььььь</h2>
-               <button className={icon}></button>
-             </div>
-            <span className="moviesCard__description-duration">1ч 42м</span>
-                                    
-        </article>   
+  const location = useLocation();
+  const icon =
+    !movieIsLiked(item)
+      ? "moviesCard__description-button moviesCard__description-button_inactive"
+      : " moviesCard__description-button moviesCard__description-button_active";
 
-  )  
+ const iconDelete = location.pathname==="/saved-movies" ? "moviesCard__description-button moviesCard__description-button_close" : " "; 
+console.log(movieIsLiked(item))
+  return (
+    <article className="moviesCard">
+      <img
+        className="moviesCard__poster"
+        src={
+          location.pathname === "/movies"
+            ? `${movies_url}${item.image.url}`
+            : item.image
+        }
+        alt="Постер"
+      ></img>
+
+      <div className="moviesCard__description">
+        <h2 className="moviesCard__description-title">{nameRU}</h2>
+        {}
+        <button
+          type="submit"
+          className={location.pathname === "/movies" ? icon : iconDelete}
+          onClick={() => (movieIsLiked(item) ? onDelete(item) : handleLikeClick(item))}
+        ></button>
+      </div>
+      <span className="moviesCard__description-duration">
+        {convertMinsToHours(duration)}
+      </span>
+    </article>
+  );
 }
 
 export default MoviesCard;

@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import Navigation from "../Navigation/Navigation";
 import Logo from "../Logo/Logo";
 
-function Header() {
+function Header({loggedIn}) {
   const location = useLocation();
 
   const header =
@@ -12,7 +12,9 @@ function Header() {
   return (
     <header className={header}>
       <Logo />
-      <Navigation />
+      <Navigation 
+      loggedIn={loggedIn}
+      />
     </header>
   );
 }
