@@ -2,7 +2,8 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 import { movies_url } from "../../utils/constants";
 
-function MoviesCard({ item, onLike, savedMovies, movieIsLiked, onDelete }) {
+function MoviesCard({ item, onSaved, savedMovies, onDelete, movieIsLiked }) {
+  movieIsLiked(item);
   const { nameRU, duration } = item;
 
   const convertMinsToHours = (min) => {
@@ -12,8 +13,8 @@ function MoviesCard({ item, onLike, savedMovies, movieIsLiked, onDelete }) {
     return `${hours}ч:${minutes}мин`;
   };
 
-  function handleLikeClick() {
-    onLike({
+  const onSavedMovies = () => {
+    onSaved({
       country: item.country,
       director: item.director,
       duration: item.duration,
@@ -26,36 +27,50 @@ function MoviesCard({ item, onLike, savedMovies, movieIsLiked, onDelete }) {
       thumbnail: `${movies_url}${item.image.previewUrl}`,
       movieId: item.id,
     });
-  }
+  };
+
+  const onDeleteMovies = () => {
+    onDelete(item);
+  };
 
   const location = useLocation();
-  const icon =
-    !movieIsLiked(item)
-      ? "moviesCard__description-button moviesCard__description-button_inactive"
-      : " moviesCard__description-button moviesCard__description-button_active";
+  const moviesLocation = location.pathname === "/movies";
 
- const iconDelete = location.pathname==="/saved-movies" ? "moviesCard__description-button moviesCard__description-button_close" : " "; 
-console.log(movieIsLiked(item))
+  const icon = movieIsLiked(item)
+    ? "moviesCard__description-button moviesCard__description-button_active"
+    : "moviesCard__description-button moviesCard__description-button_inactive";
+
+  const iconDelete =
+    location.pathname === "/saved-movies"
+      ? "moviesCard__description-button moviesCard__description-button_close"
+      : " ";
+
   return (
     <article className="moviesCard">
       <img
         className="moviesCard__poster"
-        src={
-          location.pathname === "/movies"
-            ? `${movies_url}${item.image.url}`
-            : item.image
-        }
+        src={moviesLocation ? `${movies_url}${item.image.url}` : item.image}
         alt="Постер"
       ></img>
 
       <div className="moviesCard__description">
         <h2 className="moviesCard__description-title">{nameRU}</h2>
         {}
-        <button
-          type="submit"
-          className={location.pathname === "/movies" ? icon : iconDelete}
-          onClick={() => (movieIsLiked(item) ? onDelete(item) : handleLikeClick(item))}
-        ></button>
+        {moviesLocation ? (
+          <button
+            type="submit"
+            className={icon}
+            onClick={() =>
+              movieIsLiked(item) ? onDeleteMovies() : onSavedMovies()
+            }
+          ></button>
+        ) : (
+          <button
+            type="submit"
+            className={iconDelete}
+            onClick={() => onDeleteMovies()}
+          ></button>
+        )}
       </div>
       <span className="moviesCard__description-duration">
         {convertMinsToHours(duration)}

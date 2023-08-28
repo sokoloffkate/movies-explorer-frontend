@@ -185,7 +185,7 @@ function App() {
     });
   };
 
-  const handleLikeClick = (newMovie) => {
+  const handleSavedMovie = (newMovie) => {
     api
       .addNewMovie(newMovie)
       .then((movie) => {
@@ -197,14 +197,22 @@ function App() {
       });
   };
 
-  const handleDeleteMovies = (movie) => {
-    console.log(movie)
-    api.deleteMovie(movie._id)
-    .then((n) => {
-      console.log(n)
-      setSavedMovies([...savedMovies.filter(m => m._id !== movie._id)])
-    })
-  }
+  const handleDeleteMovies = (m) => {
+    console.log(m);
+    const movie = savedMovies.find((i) => i.movieId === m.id);
+    api.deleteMovie(movie._id).then((n) => {
+      setSavedMovies([...savedMovies.filter((m) => m._id !== movie._id)]);
+    });
+  };
+
+  const handleSavedDeleteMovies = (m) => {
+    api.deleteMovie(m._id).then((n) => {
+      console.log(n);
+      setSavedMovies([...savedMovies.filter((s) => s._id !== m._id)]);
+      console.log(savedMovies);
+    });
+  };
+  console.log(savedMovies);
 
   useEffect(() => {
     localStorage.setItem("isSaved_Movies_Key", JSON.stringify(savedMovies));
@@ -267,7 +275,7 @@ function App() {
               showMoreMovies={showMoreMovies}
               getMoreMovies={getMoreMovies}
               shortMovies={shortMovies}
-              onLike={handleLikeClick}
+              onSaved={handleSavedMovie}
               savedMovies={savedMovies}
               onDelete={handleDeleteMovies}
             ></ProtectedRoute>
@@ -282,6 +290,7 @@ function App() {
               errors={errors}
               errMessage={errMessage}
               onSearch={handleSavedSearch}
+              onDelete={handleSavedDeleteMovies}
             ></ProtectedRoute>
 
             <Route path="*" component={Error} />

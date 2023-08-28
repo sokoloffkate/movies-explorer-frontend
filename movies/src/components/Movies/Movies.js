@@ -21,7 +21,7 @@ function Movies({
   shortMovies,
   isToggled,
   onSwitch,
-  onLike,
+  onSaved,
   savedMovies,
   onDelete
 }) {
@@ -47,7 +47,7 @@ function Movies({
         showMoreMovies={showMoreMovies}
         shortMovies={shortMovies}
         isToggled={isToggled}
-        onLike={onLike}
+        onSaved={onSaved}
         savedMovies={savedMovies}
         onDelete={onDelete}
       />

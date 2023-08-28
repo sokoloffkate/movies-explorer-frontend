@@ -10,9 +10,9 @@ function MoviesCardList({
   showMoreMovies,
   shortMovies,
   isToggled,
-  onLike,
+  onSaved,
   savedMovies,
-  onDelete
+  onDelete,
 }) {
   const location = useLocation();
 
@@ -27,23 +27,32 @@ function MoviesCardList({
           ? filterMovies
               .slice(0, mp)
               .map((item) => (
-                <MoviesCard item={item} key={item.id} onLike={onLike} movieIsLiked={movieIsLiked} onDelete={onDelete}/>
+                <MoviesCard
+                  item={item}
+                  key={item.id}
+                  onSaved={onSaved}
+                  onDelete={onDelete}
+                  movieIsLiked={movieIsLiked}
+                />
               ))
           : " "}
         {showMoreMovies
           ? restMoreMovies.map((item) => (
-              <MoviesCard item={item} key={item.id} onLike={onLike} />
+              <MoviesCard item={item} key={item.id} />
             ))
           : " "}
         {isToggled
-          ? shortMovies.map((item) => (
-              <MoviesCard item={item} key={item.id} onLike={onLike} />
-            ))
+          ? shortMovies.map((item) => <MoviesCard item={item} key={item.id} />)
           : " "}
 
         {savedMovies && location.pathname === "/saved-movies"
           ? savedMovies.map((item) => (
-              <MoviesCard item={item} key={item.id} onLike={onLike} movieIsLiked={movieIsLiked} />
+              <MoviesCard
+                item={item}
+                key={item.id}
+                onDelete={onDelete}
+                movieIsLiked={movieIsLiked}
+              />
             ))
           : " "}
       </section>
