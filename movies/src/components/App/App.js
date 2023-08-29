@@ -49,10 +49,6 @@ function App() {
   const [err, setErr] = useState(false);
   const [clickMoreBtn, setClickMoreBtn] = useState(false);
 
-  const handlePopUpClick = () => {
-    setPopUpOpen(!isPopUpOpen);
-  };
-
   const history = useHistory();
   console.log(width);
 
@@ -79,7 +75,8 @@ function App() {
         history.push("/movies");
       })
       .catch((err) => {
-        handlePopUpClick();
+        console.log(err)
+        setErr(true);
         console.log(`Ошибка - ${err}`);
       });
   };
@@ -248,7 +245,7 @@ function App() {
             </Route>
 
             <Route exact path="/signin">
-              <Login onLogin={handleAuth} />
+              <Login onLogin={handleAuth} err={err} />
             </Route>
 
             <ProtectedRoute

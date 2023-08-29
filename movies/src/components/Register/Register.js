@@ -2,7 +2,7 @@ import { useForm } from 'react-hook-form';
 import FormInputs from "../FormInputs/FormInputs";
 
 function Register ({ onRegister, err }) {
-
+  console.log(err)
   const {
     register,
     handleSubmit,
