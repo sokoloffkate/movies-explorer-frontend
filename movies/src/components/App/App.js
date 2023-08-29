@@ -46,7 +46,8 @@ function App() {
   const [errMessage, setErrMessage] = useState("");
   const [isToggled, setIsToggled] = useState(false);
 
-  const[err, setErr] = useState(false);
+  const [err, setErr] = useState(false);
+  const [clickMoreBtn, setClickMoreBtn] = useState(false);
 
   const handlePopUpClick = () => {
     setPopUpOpen(!isPopUpOpen);
@@ -54,7 +55,6 @@ function App() {
 
   const history = useHistory();
   console.log(width);
-  console.log(isPopUpOpen);
 
   const handleRegister = (name, email, password) => {
     api
@@ -65,7 +65,7 @@ function App() {
       })
       .catch((err) => {
         setUserRegister(false);
-        setErr(true)
+        setErr(true);
         console.log(`Ошибка - ${err}`);
       });
   };
@@ -204,7 +204,6 @@ function App() {
   };
 
   const handleDeleteMovies = (m) => {
-    console.log(m);
     const movie = savedMovies.find((i) => i.movieId === m.id);
     api.deleteMovie(movie._id).then((n) => {
       setSavedMovies([...savedMovies.filter((m) => m._id !== movie._id)]);
@@ -213,9 +212,7 @@ function App() {
 
   const handleSavedDeleteMovies = (m) => {
     api.deleteMovie(m._id).then((n) => {
-      console.log(n);
       setSavedMovies([...savedMovies.filter((s) => s._id !== m._id)]);
-      console.log(savedMovies);
     });
   };
 
@@ -284,6 +281,7 @@ function App() {
               onSaved={handleSavedMovie}
               savedMovies={savedMovies}
               onDelete={handleDeleteMovies}
+              clickMoreBtn={clickMoreBtn}
             ></ProtectedRoute>
 
             <ProtectedRoute
@@ -300,6 +298,7 @@ function App() {
               notFoundMovies={notFoundMovies}
               onSearch={handleSavedSearch}
               onDelete={handleSavedDeleteMovies}
+              clickMoreBtn={clickMoreBtn}
             ></ProtectedRoute>
 
             <Route path="*" component={Error} />

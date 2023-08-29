@@ -1,9 +1,10 @@
 import React from "react";
 
-function MoreButton({}) {
+function MoreButton() {
+
   return (
     <section className="moreButton">
-      <button type="button" className="moreButton__btn">
+      <button type="button" className="moreButton__btn" >
         Ещё
       </button>
     </section>

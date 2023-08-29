@@ -23,7 +23,8 @@ function Movies({
   onSwitch,
   onSaved,
   savedMovies,
-  onDelete
+  onDelete,
+  clickMoreBtn
 }) {
   return (
     <main className="movies">
@@ -50,8 +51,9 @@ function Movies({
         onSaved={onSaved}
         savedMovies={savedMovies}
         onDelete={onDelete}
+        clickMoreBtn={clickMoreBtn}
       />
-      <MoreButton getMoreMovies={getMoreMovies} />
+      <MoreButton getMoreMovies={getMoreMovies} clickMoreBtn={clickMoreBtn} />
       <Footer />
     </main>
   );
