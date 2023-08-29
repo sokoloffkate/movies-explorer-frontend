@@ -51,6 +51,8 @@ function App() {
   };
 
   const history = useHistory();
+  console.log(width);
+  console.log(isPopUpOpen);
 
   const handleRegister = (name, email, password) => {
     api
@@ -143,6 +145,7 @@ function App() {
   }, [filterMovies]);
 
   const handleSearchShortMovies = (e) => {
+    e.preventDefault();
     const shortArr = getShortMovies(movies);
     setShortMovies(shortArr);
     setIsToggled(!isToggled);
@@ -158,10 +161,10 @@ function App() {
   useEffect(() => {
     if (width > 1279) {
       setMp(12);
-      setMpm(4);
+      setMpm(3);
     } else if (width > 768 && width < 1279) {
       setMp(8);
-      setMpm(3);
+      setMpm(2);
     } else {
       setMp(5);
       setMpm(2);
@@ -212,7 +215,6 @@ function App() {
       console.log(savedMovies);
     });
   };
-  console.log(savedMovies);
 
   useEffect(() => {
     localStorage.setItem("isSaved_Movies_Key", JSON.stringify(savedMovies));
@@ -220,14 +222,15 @@ function App() {
 
   const handleLogOut = () => {
     api.logOut().then(() => {
-      localStorage.clear();
+      localStorage.removeItem("isUserLogin");
+      localStorage.removeItem("isMovies_Filter_Key");
+      localStorage.removeItem("isShortMovies_Filter_Key");
       setCurrentUser({ name: " ", email: " " });
+      setFilterMovies([]);
       setLoggedIn(false);
       history.push("/");
     });
   };
-
-  console.log(savedMovies);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -289,6 +292,9 @@ function App() {
               setInputValue={setInputValue}
               errors={errors}
               errMessage={errMessage}
+              isToggled={isToggled}
+              onSwitch={handleSearchShortMovies}
+              notFoundMovies={notFoundMovies}
               onSearch={handleSavedSearch}
               onDelete={handleSavedDeleteMovies}
             ></ProtectedRoute>

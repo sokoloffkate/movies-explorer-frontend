@@ -42,7 +42,15 @@ function MoviesCardList({
             ))
           : " "}
         {isToggled
-          ? shortMovies.map((item) => <MoviesCard item={item} key={item.id} />)
+          ? shortMovies.map((item) => (
+              <MoviesCard
+                item={item}
+                key={item.id}
+                movieIsLiked={movieIsLiked}
+                onSaved={onSaved}
+                onDelete={onDelete}
+              />
+            ))
           : " "}
 
         {savedMovies && location.pathname === "/saved-movies"

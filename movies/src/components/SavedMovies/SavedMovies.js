@@ -6,14 +6,19 @@ import Footer from "../Footer/Footer";
 import MoreButton from "../MoreButton/MoreButton";
 
 function SavedMovies({
-  filterMovies,
+  loggedIn,
   savedMovies,
   inputValue,
   setInputValue,
+  filterMovies,
   errors,
   errMessage,
+  isToggled,
+  onSwitch,
+  notFoundMovies,
   onSearch,
   onDelete,
+  
 }) {
   return (
     <main className="savedMovies">
@@ -24,8 +29,14 @@ function SavedMovies({
         errors={errors}
         errMessage={errMessage}
         onSearch={onSearch}
+        isToggled={isToggled}
+        onSwitch={onSwitch}
       />
-      <MoviesCardList savedMovies={savedMovies} onDelete={onDelete} />
+      <MoviesCardList
+        savedMovies={savedMovies}
+        notFoundMovies={notFoundMovies}
+        onDelete={onDelete}
+       />
       <MoreButton />
       <Footer />
     </main>

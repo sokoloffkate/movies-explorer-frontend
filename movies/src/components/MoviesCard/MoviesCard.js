@@ -6,6 +6,10 @@ function MoviesCard({ item, onSaved, savedMovies, onDelete, movieIsLiked }) {
   movieIsLiked(item);
   const { nameRU, duration } = item;
 
+  const handleClickPage = () => {
+
+  };
+
   const convertMinsToHours = (min) => {
     let hours = Math.floor(min / 60);
     let minutes = min % 60;
@@ -51,6 +55,7 @@ function MoviesCard({ item, onSaved, savedMovies, onDelete, movieIsLiked }) {
         className="moviesCard__poster"
         src={moviesLocation ? `${movies_url}${item.image.url}` : item.image}
         alt="Постер"
+        onClick={handleClickPage}
       ></img>
 
       <div className="moviesCard__description">

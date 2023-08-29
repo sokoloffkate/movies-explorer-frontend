@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 function FilterCheckbox({ onSwitch, isToggled }) {
+  console.log(isToggled)
   return (
     <>
       <section className="checkbox">
