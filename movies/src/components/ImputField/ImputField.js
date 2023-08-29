@@ -1,16 +1,11 @@
 import React from "react";
 
-function InputField ({ label, placeholder }) {
+function InputField ({ label, children }) {
     
     return (
         <label className="inputField">
           {`${label}`}
-           <input
-           type="text"
-           className="inputField__input"
-           required
-           placeholder= {`${placeholder}`}
-           />
+           {children}
         </label>      
                
     )

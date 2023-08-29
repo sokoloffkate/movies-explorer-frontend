@@ -9,6 +9,16 @@
     row-gap: 38px;
 }
 
+.moviesCardList__notfound {
+  color: #fff;
+  font-size: 20px;
+  line-height: 22px;
+  font-weight: 400;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+
 
 @media screen and (max-width: 768px) {
     .moviesCardList  {
@@ -16,8 +26,7 @@
       padding: 70px 30px 10px;
       gap: 30px;
    }  
-   
-} 
+  } 
 
 @media screen and (max-width: 400px) {
     .moviesCardList  {
