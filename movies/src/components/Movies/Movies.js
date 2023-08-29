@@ -12,18 +12,18 @@ function Movies({
   errMessage,
   onSearch,
   filterMovies,
+  initialRender,
+  step,
   notFoundMovies,
-  restMoreMovies,
-  mp,
-  mpm,
-  showMoreMovies,
-  getMoreMovies,
+  initialMovies,
+  loadMore,
   shortMovies,
   isToggled,
   onSwitch,
   onSaved,
   savedMovies,
-  onDelete
+  onDelete,
+  clickMoreBtn,
 }) {
   return (
     <main className="movies">
@@ -34,24 +34,24 @@ function Movies({
         errors={errors}
         errMessage={errMessage}
         onSearch={onSearch}
-        showMoreMovies={showMoreMovies}
         isToggled={isToggled}
         onSwitch={onSwitch}
       />
       <MoviesCardList
         filterMovies={filterMovies}
+        initialRender={initialRender}
+        step={step}
         notFoundMovies={notFoundMovies}
-        restMoreMovies={restMoreMovies}
-        mp={mp}
-        mpm={mpm}
-        showMoreMovies={showMoreMovies}
+        initialMovies={initialMovies}
+        loadMore={loadMore}
         shortMovies={shortMovies}
         isToggled={isToggled}
         onSaved={onSaved}
         savedMovies={savedMovies}
         onDelete={onDelete}
+        clickMoreBtn={clickMoreBtn}
       />
-      <MoreButton getMoreMovies={getMoreMovies} />
+     {/* <MoreButton />*/}
       <Footer />
     </main>
   );

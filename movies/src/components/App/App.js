@@ -15,6 +15,7 @@ import * as api from "../../utils/MainApi";
 import * as beatfilm from "../../utils/MoviesApi";
 import { useState, useEffect } from "react";
 import { useViewport } from "../../utils/resize";
+import { slice } from "lodash";
 import { getFilterMovies, getShortMovies } from "../../utils/search";
 
 function App() {
@@ -25,16 +26,18 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [inputValue, setInputValue] = useState("");
   const isLogin = JSON.parse(localStorage.getItem("isUserLogin"));
-  const [mp, setMp] = useState(0);
-  const [mpm, setMpm] = useState(0);
+  const [step, setStep] = useState(0);
+  const [initialRender, SetInitialRender] =useState(0);
+
   const [filterMovies, setFilterMovies] = useState(
     JSON.parse(localStorage.getItem("isMovies_Filter_Key")) || []
   );
+  const [isCompleted, setIsCompleted] = useState(false);
+  const [index, setIndex] = useState(step);
+
   const [shortMovies, setShortMovies] = useState(
     JSON.parse(localStorage.getItem("isShortMovies_Filter_Key")) || []
   );
-  const [restMoreMovies, setRestMoreMovies] = useState([]);
-  const [showMoreMovies, setShowMoreMovies] = useState(false);
   const [savedMovies, setSavedMovies] = useState(
     JSON.parse(localStorage.getItem("isSaved_Movies_Key")) || []
   );
@@ -46,13 +49,11 @@ function App() {
   const [errMessage, setErrMessage] = useState("");
   const [isToggled, setIsToggled] = useState(false);
 
-  const handlePopUpClick = () => {
-    setPopUpOpen(!isPopUpOpen);
-  };
+  const [err, setErr] = useState(false);
+  //const [clickMoreBtn, setClickMoreBtn] = useState(false);
 
   const history = useHistory();
   console.log(width);
-  console.log(isPopUpOpen);
 
   const handleRegister = (name, email, password) => {
     api
@@ -63,6 +64,7 @@ function App() {
       })
       .catch((err) => {
         setUserRegister(false);
+        setErr(true);
         console.log(`Ошибка - ${err}`);
       });
   };
@@ -76,7 +78,8 @@ function App() {
         history.push("/movies");
       })
       .catch((err) => {
-        handlePopUpClick();
+        console.log(err);
+        setErr(true);
         console.log(`Ошибка - ${err}`);
       });
   };
@@ -97,6 +100,20 @@ function App() {
         setMovies(data);
       });
   }, [loggedIn]);
+
+  
+  useEffect(() => {
+    if (width > 1279) {
+      SetInitialRender(16)
+      setStep(4);
+    } else if (width > 768 && width < 1279) {
+      SetInitialRender(12)
+      setStep(3);
+    } else {
+      SetInitialRender(5)
+      setStep(2);
+    }
+  }, [width]);
 
   const checkIsMoviesNotFound = (m) => {
     if (!m.length) {
@@ -122,6 +139,19 @@ function App() {
       setErrMessage(e);
     }
   };
+
+  //const initialMovies = slice(filterMovies, 0, index);
+ 
+
+/*  const loadMore = () => {
+    setIndex(index + step);
+    console.log(index);
+    if (index >= filterMovies.length) {
+      setIsCompleted(true);
+    } else {
+      setIsCompleted(false);
+    }
+  };*/
 
   const handleSavedSearch = (e) => {
     e.preventDefault();
@@ -158,26 +188,7 @@ function App() {
     );
   }, [shortMovies]);
 
-  useEffect(() => {
-    if (width > 1279) {
-      setMp(12);
-      setMpm(3);
-    } else if (width > 768 && width < 1279) {
-      setMp(8);
-      setMpm(2);
-    } else {
-      setMp(5);
-      setMpm(2);
-    }
-  }, [width]);
 
-  useEffect(() => {
-    setRestMoreMovies(filterMovies.slice(mp));
-  }, [filterMovies, mp]);
-
-  const getMoreMovies = () => {
-    setShowMoreMovies(true);
-  };
   const handleUpdateUserProfile = ({ name, email }) => {
     api.updateUserProfile({ name, email }).then((newDataUser) => {
       setCurrentUser({
@@ -201,7 +212,6 @@ function App() {
   };
 
   const handleDeleteMovies = (m) => {
-    console.log(m);
     const movie = savedMovies.find((i) => i.movieId === m.id);
     api.deleteMovie(movie._id).then((n) => {
       setSavedMovies([...savedMovies.filter((m) => m._id !== movie._id)]);
@@ -210,9 +220,7 @@ function App() {
 
   const handleSavedDeleteMovies = (m) => {
     api.deleteMovie(m._id).then((n) => {
-      console.log(n);
       setSavedMovies([...savedMovies.filter((s) => s._id !== m._id)]);
-      console.log(savedMovies);
     });
   };
 
@@ -244,11 +252,11 @@ function App() {
             </Route>
 
             <Route exact path="/signup">
-              <Register onRegister={handleRegister} />
+              <Register onRegister={handleRegister} err={err} />
             </Route>
 
             <Route exact path="/signin">
-              <Login onLogin={handleAuth} />
+              <Login onLogin={handleAuth} err={err} />
             </Route>
 
             <ProtectedRoute
@@ -271,16 +279,16 @@ function App() {
               onSwitch={handleSearchShortMovies}
               isToggled={isToggled}
               filterMovies={filterMovies}
+              initialRender={initialRender}
+              step={step}
               notFoundMovies={notFoundMovies}
-              restMoreMovies={restMoreMovies}
-              mp={mp}
-              mpm={mpm}
-              showMoreMovies={showMoreMovies}
-              getMoreMovies={getMoreMovies}
+             // initialMovies={initialMovies}
+              //loadMore={loadMore}
               shortMovies={shortMovies}
               onSaved={handleSavedMovie}
               savedMovies={savedMovies}
               onDelete={handleDeleteMovies}
+              //clickMoreBtn={clickMoreBtn}
             ></ProtectedRoute>
 
             <ProtectedRoute
@@ -297,6 +305,7 @@ function App() {
               notFoundMovies={notFoundMovies}
               onSearch={handleSavedSearch}
               onDelete={handleSavedDeleteMovies}
+             // clickMoreBtn={clickMoreBtn}
             ></ProtectedRoute>
 
             <Route path="*" component={Error} />

@@ -1,7 +1,9 @@
 import FormInputs from "../FormInputs/FormInputs";
 import { useForm } from "react-hook-form";
 
-function Login({ onLogin }) {
+function Login({ onLogin, err }) {
+  console.log(err)
+
   const {
     register,
     handleSubmit,
@@ -66,6 +68,7 @@ function Login({ onLogin }) {
             <p className="inputField__error">{errors.password.message}</p>
           )}
         </label>
+        {err ? <span className="inputField__error"> Неправильные почта или пароль </span>: " " }
       </FormInputs>
     </form>
   );
