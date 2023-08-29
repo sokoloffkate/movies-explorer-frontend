@@ -14,10 +14,6 @@ function MoviesCardList({
   savedMovies,
   onDelete,
 }) {
-
-  console.log(mp);
-  console.log(filterMovies.length)
-  
   const location = useLocation();
 
   const movieIsLiked = ({ id }) => {
