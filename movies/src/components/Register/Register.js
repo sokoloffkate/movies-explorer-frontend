@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
 import FormInputs from "../FormInputs/FormInputs";
 
-function Register ({ onRegister }) {
+function Register ({ onRegister, err }) {
 
   const {
     register,
@@ -92,6 +92,7 @@ function Register ({ onRegister }) {
 
       {errors.password && <p className="inputField__error">{errors.password.message}</p>}
     </label>
+    {err ? <span className="inputField__error"> Пользователь с таким email уже зарегистрирован </span>: " " }
 
     </FormInputs>
   </form>

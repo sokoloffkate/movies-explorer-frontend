@@ -46,6 +46,8 @@ function App() {
   const [errMessage, setErrMessage] = useState("");
   const [isToggled, setIsToggled] = useState(false);
 
+  const[err, setErr] = useState(false);
+
   const handlePopUpClick = () => {
     setPopUpOpen(!isPopUpOpen);
   };
@@ -63,6 +65,7 @@ function App() {
       })
       .catch((err) => {
         setUserRegister(false);
+        setErr(true)
         console.log(`Ошибка - ${err}`);
       });
   };
@@ -244,7 +247,7 @@ function App() {
             </Route>
 
             <Route exact path="/signup">
-              <Register onRegister={handleRegister} />
+              <Register onRegister={handleRegister} err={err} />
             </Route>
 
             <Route exact path="/signin">
